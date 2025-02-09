@@ -20,6 +20,11 @@ int start = 1;
 char player = '1';
 
 int state = 0;
+int magicPlayer1 = 2;
+int magicPlayer2 = 2;
+int movement = 0;
+int columnMagic, rowMagic;
+
 
 void displayBoard();
 void displayBoardBack();
@@ -27,6 +32,7 @@ void moveAgent(int row,int column, char player);
 int checkWin();
 
 void feature1(int row, int column);
+void feature2();
 
 
 int main(void){
@@ -66,7 +72,7 @@ int main(void){
         // checkWin();
         
 
-        displayBoardBack();
+        // displayBoardBack();
         displayBoard();
 
         printf("Player %c, select agent\n",player);
@@ -77,7 +83,72 @@ int main(void){
         printf("Enter the column [1-5]: ");
         scanf("%d", &column);
 
-        moveAgent(row-1,column-1,player);
+        
+        if(player == '1' && magicPlayer1 > 0){
+            printf("Player %c, select movement\n",player);
+            printf("Player %c, select 1 : Walk\n",player);
+            printf("Player %c, select 2 : Magic\n",player);
+            printf("Select your movement : ");
+            scanf("%d", &movement);
+            
+            switch (movement)
+            {
+            case 1:
+                moveAgent(row-1,column-1,player);
+                break;
+
+            case 2:
+                magicPlayer1--;
+                printf("Enter the row wrap [1-5]: ");
+                scanf("%d", &rowMagic);
+
+                printf("Enter the column wrap [1-5]: ");
+                scanf("%d", &columnMagic);
+
+                board[rowMagic-1][columnMagic-1] = board[row-1][column-1];
+                boardBack[rowMagic-1][columnMagic-1] = boardBack[row-1][column-1];
+
+                board[row-1][column-1] = ' ';
+                boardBack[row-1][column-1] = ' ';
+                break;
+            default:
+                break;
+            }
+        }
+        else if(player == '2' && magicPlayer2 > 0){
+            magicPlayer2--;
+            printf("Player %c, select movement\n",player);
+            printf("Player %c, select 1 : Walk\n",player);
+            printf("Player %c, select 2 : Magic\n",player);
+            printf("Select your movement : ");
+            scanf("%d", &movement);
+            
+            switch (movement)
+            {
+            case 1:
+                moveAgent(row-1,column-1,player);
+                break;
+
+            case 2:
+                printf("Enter the row wrap [1-5]: ");
+                scanf("%d", &rowMagic);
+
+                printf("Enter the column wrap [1-5]: ");
+                scanf("%d", &columnMagic);
+
+                board[rowMagic-1][columnMagic-1] = board[row-1][column-1];
+                boardBack[rowMagic-1][columnMagic-1] = boardBack[row-1][column-1];
+
+                board[row-1][column-1] = ' ';
+                boardBack[row-1][column-1] = ' ';
+                break;
+            default:
+                break;
+            }
+        }
+        else {
+            moveAgent(row-1,column-1,player);
+        }
 
         if(state > 0){
             state -= 1;
