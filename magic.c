@@ -32,7 +32,7 @@ void moveAgent(int row,int column, char player);
 int checkWin();
 
 void feature1(int row, int column);
-void feature2();
+
 
 
 int main(void){
@@ -67,12 +67,12 @@ int main(void){
         r2 = r2%5;
     }
     boardBack[r1][r2] = 'B';
+        displayBoardBack();
     
     while (start == 1) {
         // checkWin();
         
 
-        // displayBoardBack();
         displayBoard();
 
         printf("Player %c, select agent\n",player);
