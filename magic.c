@@ -26,10 +26,11 @@ int movement = 0;
 int columnMagic, rowMagic;
 
 
+
 void displayBoard();
 void displayBoardBack();
 void moveAgent(int row,int column, char player);
-int checkWin();
+void checkWin();
 
 void feature1(int row, int column);
 
@@ -158,18 +159,8 @@ int main(void){
         else
             player ='2';
 
-        // printf(checkWin());
-        if(checkWin() == 1){
-
-            if( player == '1')
-                player = '2';
-            else
-                player ='1';
-
-            printf("!!!! Plyer %c WIN !!!!",player);
-            displayBoard();
-            start = 0;
-        }
+        checkWin();
+        
 
     }
 
@@ -377,19 +368,29 @@ void moveAgent(int row,int column, char player) {
         }
 }
 
-int  checkWin(){
-    int count = 0;
-
+void  checkWin(){
+    int count1 = 0;
+    int count2 = 0;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            if (board[i][j] == 'J' ||
-                board[i][j] == 'Q' ||
-                board[i][j] == 'K') {
-                count++;
+            if (boardBack[i][j] == '1' ) {
+                count1++;
+            }
+            else if(boardBack[i][j] == '2' ){
+                count2++;
             }
         }
     }
-    return count;
+    if(count1 == 0){
+        printf("!!!! Plyer 2 WIN !!!!");
+        displayBoard();
+        start = 0;
+    }
+    else if(count2 == 0){
+        printf("!!!! Plyer 2 WIN !!!!");
+        displayBoard();
+        start = 0;
+    }
 }
 
 
