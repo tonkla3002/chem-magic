@@ -38,21 +38,21 @@ void feature1(int row, int column);
 
 int main(void){
 
-    board[0][1] = 'J';
-    board[0][2] = 'Q';
-    board[0][3] = 'K';
+    board[2][3] = 'J';
+    board[2][1] = 'Q';
+    board[2][2] = 'K';
 
-    board[4][1] = 'J';
-    board[4][2] = 'Q';
-    board[4][3] = 'K';
+    board[3][1] = 'J';
+    board[3][2] = 'Q';
+    board[3][3] = 'K';
 
-    boardBack[0][1] = '1';
-    boardBack[0][3] = '1';
-    boardBack[0][2] = '1';
+    boardBack[2][1] = '1';
+    boardBack[2][3] = '1';
+    boardBack[2][2] = '1';
 
-    boardBack[4][1] = '2';
-    boardBack[4][2] = '2';
-    boardBack[4][3] = '2';
+    boardBack[3][1] = '2';
+    boardBack[3][2] = '2';
+    boardBack[3][3] = '2';
 
     //random position boom
     srand(time(NULL));   
@@ -387,7 +387,7 @@ void  checkWin(){
         start = 0;
     }
     else if(count2 == 0){
-        printf("!!!! Plyer 2 WIN !!!!");
+        printf("!!!! Plyer 1 WIN !!!!");
         displayBoard();
         start = 0;
     }
